@@ -52,3 +52,36 @@ export const getDepartmentsController = async (req, res) => {
     }
 };
 
+
+export const updateDepartmentController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { departmentName } = req.body;
+
+        if (!departmentName) {
+            return res.status(400).json({
+                message: "Department name is required"
+            });
+        }
+
+        const department = await getDepartmentById(id);
+
+        if (department.length === 0) {
+            return res.status(404).json({
+                message: "Department not found"
+            });
+        }
+
+        await updateDepartment(id, departmentName);
+
+        return res.status(200).json({
+            message: "Department updated successfully"
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
