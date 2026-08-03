@@ -1,12 +1,12 @@
 import express from "express";
-import { createDepartment, deleteDepartment, getDepartments, updateDepartment } from "../controllers/departmentController.js";
+import {  createDepartmentController, deleteDepartmentController, getDepartmentsController, updateDepartmentController } from "../controllers/departmentController.js";
 
 const router = express.Router();
 
-router.post("/",createDepartment);
+router.post("/",createDepartmentController);
 
-router.get("/",getDepartments);
-router.put("/:id",updateDepartment);
-router.delete("/:id",deleteDepartment);
+router.get("/",getDepartmentsController);
+router.put("/:id",updateDepartmentController);
+router.delete("/:id",deleteDepartmentController);
 
 export default router;
