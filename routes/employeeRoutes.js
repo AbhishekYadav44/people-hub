@@ -2,11 +2,11 @@ import express from "express";
 
 import {
     createEmployeeController,
-    getEmployeesController,
-    getEmployeeByIdController,
-    updateEmployeeController,
-    deleteEmployeeController,
-    updateEmployeeStatusController
+    // getEmployeesController,
+    // getEmployeeByIdController,
+    // updateEmployeeController,
+    // deleteEmployeeController,
+    // updateEmployeeStatusController
 } from "../controllers/employeeController.js";
 
 
