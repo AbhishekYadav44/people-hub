@@ -1,5 +1,5 @@
 import { createEmployee,getEmployeeByCode,getEmployeeByEmail,departmentExists,getEmployees,getEmployeeById,updateEmployee,deleteEmployee,
-    updateEmployeeStatus
+    updateEmployeeStatus , getAllEmployeesForExport
 } from "../models/employeeModel.js";
 
 export const createEmployeeController = async (req, res) => {
@@ -126,6 +126,44 @@ export const getEmployeeByIdController = async (req, res) => {
 
 
         return res.status(200).json(employee[0]);
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+
+    }
+};
+
+import { Parser } from "json2csv";
+
+
+export const exportEmployeesController = async (req, res) => {
+
+    try {
+
+        const employees = await getAllEmployeesForExport();
+
+
+        const parser = new Parser();
+
+        const csv = parser.parse(employees);
+
+
+        res.header(
+            "Content-Type",
+            "text/csv"
+        );
+
+
+        res.attachment(
+            "employees.csv"
+        );
+
+
+        return res.send(csv);
 
 
     } catch (error) {

@@ -6,7 +6,8 @@ import {
     getEmployeeByIdController,
     updateEmployeeController,
     deleteEmployeeController,
-    updateEmployeeStatusController
+    updateEmployeeStatusController,
+    exportEmployeesController
 } from "../controllers/employeeController.js";
 
 

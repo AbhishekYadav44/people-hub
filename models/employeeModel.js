@@ -202,3 +202,12 @@ export const getEmployeeStats = async () => {
         totalDepartments: departments[0].totalDepartments
     };
 };
+
+export const getAllEmployeesForExport = async () => {
+
+    const [rows] = await db.query(
+        "SELECT * FROM employees"
+    );
+
+    return rows;
+};
