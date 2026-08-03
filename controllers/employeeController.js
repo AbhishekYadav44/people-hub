@@ -109,3 +109,130 @@ export const getEmployeesController = async (req, res) => {
 
     }
 };
+
+export const getEmployeeByIdController = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const employee = await getEmployeeById(id);
+
+
+        if (employee.length === 0) {
+            return res.status(404).json({
+                message: "Employee not found"
+            });
+        }
+
+
+        return res.status(200).json(employee[0]);
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+
+    }
+};
+
+export const updateEmployeeController = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+
+        const {
+            fullName,
+            email,
+            mobile,
+            departmentId,
+            designation,
+            salary
+        } = req.body;
+
+
+        await updateEmployee(
+            id,
+            fullName,
+            email,
+            mobile,
+            departmentId,
+            designation,
+            salary
+        );
+
+
+        return res.status(200).json({
+            message: "Employee updated successfully"
+        });
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+
+    }
+};
+
+
+
+export const deleteEmployeeController = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+
+        await deleteEmployee(id);
+
+
+        return res.status(200).json({
+            message: "Employee deleted successfully"
+        });
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+
+    }
+};
+
+
+
+export const updateEmployeeStatusController = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const { status } = req.body;
+
+
+        if (!["Active", "Inactive"].includes(status)) {
+            return res.status(400).json({
+                message: "Invalid status"
+            });
+        }
+
+
+        await updateEmployeeStatus(id, status);
+
+
+        return res.status(200).json({
+            message: "Employee status updated"
+        });
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+
+    }
+};

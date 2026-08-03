@@ -2,11 +2,11 @@ import express from "express";
 
 import {
     createEmployeeController,
-    // getEmployeesController,
-    // getEmployeeByIdController,
-    // updateEmployeeController,
-    // deleteEmployeeController,
-    // updateEmployeeStatusController
+    getEmployeesController,
+    getEmployeeByIdController,
+    updateEmployeeController,
+    deleteEmployeeController,
+    updateEmployeeStatusController
 } from "../controllers/employeeController.js";
 
 
@@ -15,15 +15,16 @@ const router = express.Router();
 
 router.post("/", createEmployeeController);
 
-// router.get("/", getEmployeesController);
+router.get("/", getEmployeesController);
+router.get("/export", exportEmployeesController);
 
-// router.get("/:id", getEmployeeByIdController);
+router.get("/:id", getEmployeeByIdController);
 
-// router.put("/:id", updateEmployeeController);
+router.put("/:id", updateEmployeeController);
 
-// router.delete("/:id", deleteEmployeeController);
+router.delete("/:id", deleteEmployeeController);
 
-// router.patch("/:id/status", updateEmployeeStatusController);
+router.patch("/:id/status", updateEmployeeStatusController);
 
 
 export default router;
